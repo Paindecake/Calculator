@@ -3,9 +3,13 @@ body {
 }
 
 #calculator {
+	display: block;
 	background-color: #d5c4a1;
-	padding: 10rem;
-	margin: 4rem 25rem 4rem;
+	width: 20rem;
+	height: 12rem;
+	padding: 10rem 2rem;
+	margin: auto;
+	margin-top: 6rem;
 }
 
 #screen {
@@ -13,21 +17,31 @@ body {
 	margin: auto;
 	width: 2em;
 	height: 1em;
-	padding: 0.5em 1em;
+	padding: 0.5em 5em;
+	border: solid 2px #d5c4a1;
+	border-radius: 10px;
 	color: #d5c4a1;
 	background-color: #3c3836;
 }
 
 #btns {
 	display: grid;
-	justify-items: center;
+	margin-top: 2em;
 	justify-content: center;
 	align-content: center;
 	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: repeat(5, 1fr);
+	grid-gap: 0.5em;
 	grid-template-areas: "ac divide multiply erase" "n7 n8 n9 equal" "n4 n5 n6 subtract" "n1 n2 n3 add" "n0 n0 dot add";
 }
 
+.btn {
+	padding: 10px;
+	border: solid 1px #d5c4a1;
+	border-radius: 10px;
+	background-color: #504945;
+	color: #d5c4a1;
+}
 #ac {
 	grid-area: ac;
 }
