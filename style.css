@@ -4,4 +4,81 @@ body {
 
 #calculator {
 	background-color: #d5c4a1;
+	padding: 10rem;
+	margin: 4rem 25rem 4rem;
+}
+
+#screen {
+	display: table;
+	margin: auto;
+	width: 2em;
+	height: 1em;
+	padding: 0.5em 1em;
+	color: #d5c4a1;
+	background-color: #3c3836;
+}
+
+#btns {
+	display: grid;
+	justify-items: center;
+	justify-content: center;
+	align-content: center;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(5, 1fr);
+	grid-template-areas: "ac divide multiply erase" "n7 n8 n9 equal" "n4 n5 n6 subtract" "n1 n2 n3 add" "n0 n0 dot add";
+}
+
+#ac {
+	grid-area: ac;
+}
+#divide {
+	grid-area: divide;
+}
+#multiply {
+	grid-area: multiply;
+}
+#erase {
+	grid-area: erase;
+}
+#num7 {
+	grid-area: n7;
+}
+#num8 {
+	grid-area: n8;
+}
+#num9 {
+	grid-area: n9;
+}
+#equal {
+	grid-area: equal;
+}
+#num4 {
+	grid-area: n4;
+}
+#num5 {
+	grid-area: n5;
+}
+#num6 {
+	grid-area: n6;
+}
+#subtract {
+	grid-area: subtract;
+}
+#num1 {
+	grid-area: n1;
+}
+#num2 {
+	grid-area: n2;
+}
+#num3 {
+	grid-area: n3;
+}
+#add {
+	grid-area: add;
+}
+#num0 {
+	grid-area: n0;
+}
+#dot {
+	grid-area: dot;
 }
