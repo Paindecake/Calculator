@@ -6,27 +6,33 @@ body {
 	display: block;
 	background-color: #d5c4a1;
 	width: 20rem;
-	height: 12rem;
-	padding: 10rem 2rem;
+	height: 24rem;
+	padding: 1rem;
 	margin: auto;
 	margin-top: 6rem;
 }
 
+#display {
+	display: grid;
+}
+
+#screenResult,
 #screen {
-	display: table;
 	margin: auto;
-	width: 2em;
+	width: 12em;
 	height: 1em;
-	padding: 0.5em 5em;
+	padding: 0.5em 1em;
 	border: solid 2px #d5c4a1;
 	border-radius: 10px;
 	color: #d5c4a1;
 	background-color: #3c3836;
+	text-align: end;
 }
 
 #btns {
 	display: grid;
 	margin-top: 2em;
+	height: 17em;
 	justify-content: center;
 	align-content: center;
 	grid-template-columns: repeat(4, 1fr);

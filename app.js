@@ -1,5 +1,6 @@
 const container = document.getElementById("container");
 const screen = document.getElementById("screen");
+const screenResult = document.getElementById("screenResult");
 const operatorBtn = document.querySelectorAll(".operatorBtn");
 const numberBtn = document.querySelectorAll(".numberBtn");
 const num0Btn = document.getElementById("num0");
@@ -39,21 +40,39 @@ function displayNum() {
 displayNum();
 
 let sum;
-let savedValue;
-let selectedOperator;
+let result = null;
+let selectedOperator = null;
+let a = "";
+let b = "";
+let resultHistory;
 
 operatorBtn.forEach((btn) => {
 	btn.onclick = () => {
-		savedValue = screen.innerText;
-		selectedOperator = btn.innerText;
+		if (a === "") {
+			a = screen.innerText;
+			selectedOperator = btn.innerText;
+		} else if (a !== "" && selectedOperator !== null) {
+			b = screen.innerText;
+			if (b === "") {
+				screenResult.textContent = resultHistory;
+				selectedOperator = btn.innerText;
+			} else {
+				screenResult.textContent = showCalc(selectedOperator);
+				a = operate(selectedOperator, +a, +b);
+				selectedOperator = btn.innerText;
+			}
+		}
 		screen.innerText = "";
 	};
 });
 
 equalBtn.onclick = () => {
-	let a = parseInt(savedValue);
-	let b = parseInt(screen.innerText);
-	screen.innerText = operate(selectedOperator, a, b);
+	b = parseInt(screen.innerText);
+	screenResult.textContent = showCalc(selectedOperator);
+	resultHistory = showCalc(selectedOperator);
+	a = operate(selectedOperator, +a, +b);
+	b = "";
+	screen.innerText = null;
 };
 
 function add(a, b) {
@@ -93,9 +112,30 @@ function operate(operator, a, b) {
 	}
 }
 
+function showCalc(operator) {
+	switch (operator) {
+		case "+":
+			return (result = `${a}+${b}=${operate(operator, +a, +b)}`);
+			break;
+		case "-":
+			return (result = `${a}-${b}=${operate(operator, +a, +b)}`);
+			break;
+		case "*":
+			return (result = `${a}*${b}=${operate(operator, +a, +b)}`);
+			break;
+		case "/":
+			return (result = `${a}/${b}=${operate(operator, +a, +b)}`);
+			break;
+	}
+}
+
 acBtn.onclick = function() {
 	sum = 0;
-	savedValue = "";
-	selectedOperator = "";
+	result = null;
+	selectedOperator = null;
 	screen.innerText = "";
+	screenResult.innerText = "";
+	resultHistory = "";
+	a = "";
+	b = "";
 };
