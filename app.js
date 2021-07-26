@@ -23,10 +23,18 @@ const addBtn = document.getElementById("add");
 const dotBtn = document.getElementById("dot");
 
 let displayValue = 0;
+let sum;
+let result = null;
+let selectedOperator = null;
+let a = "";
+let b = "";
+let resultHistory;
+let equalOn = false;
 
-// dotBtn.onclick = () => {
-// 	dotBtn.setAttribute("disabled", "")
-// };
+function roundNumber(num) {
+	let rounded = Math.round(num * 1000) / 1000;
+	return rounded;
+}
 
 function screenUpdate() {
 	screen.innerText += displayValue;
@@ -52,14 +60,6 @@ function displayNum() {
 }
 displayNum();
 
-let sum;
-let result = null;
-let selectedOperator = null;
-let a = "";
-let b = "";
-let resultHistory;
-let equalOn = false;
-
 equalBtn.onclick = () => {
 	equalOn = true;
 	b = screen.innerText;
@@ -76,26 +76,27 @@ equalBtn.onclick = () => {
 
 function add(a, b) {
 	sum = a + b;
-	return sum;
+	return roundNumber(sum);
 }
 
 function subtract(a, b) {
 	sum = a - b;
-	return sum;
+	return roundNumber(sum);
 }
 
 function multiply(a, b) {
 	sum = a * b;
-	return sum;
+	return roundNumber(sum);
 }
 
 function divide(a, b) {
 	if (b === 0) {
 		sum = "NO";
+		return sum;
 	} else {
 		sum = a / b;
+		return roundNumber(sum);
 	}
-	return sum;
 }
 
 function operate(operator, a, b) {
