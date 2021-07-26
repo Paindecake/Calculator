@@ -1,15 +1,26 @@
 body {
-	background-color: #3c3836;
+	font-family: "Nunito Sans";
+	background-color: #212d40;
+	color: #f8e5ee;
+	/* be95c4 */
+	/* E18AD4 */
+}
+
+h1 {
+	background: linear-gradient(to right, #a9757f, #f8e5ee);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-align: center;
+	font-size: 38px;
+	margin: 70px 0;
 }
 
 #calculator {
 	display: block;
-	background-color: #d5c4a1;
+	background-color: #364156;
 	width: 20rem;
-	height: 24rem;
 	padding: 1rem;
 	margin: auto;
-	margin-top: 6rem;
 }
 
 #display {
@@ -18,21 +29,20 @@ body {
 
 #screenResult,
 #screen {
-	margin: auto;
-	width: 12em;
+	font-size: 20px;
+	width: auto;
 	height: 1em;
 	padding: 0.5em 1em;
-	border: solid 2px #d5c4a1;
-	border-radius: 10px;
-	color: #d5c4a1;
-	background-color: #3c3836;
+	border: none;
+	color: #f8e5ee;
+	background-color: #272f3f;
 	text-align: end;
 }
 
 #btns {
 	display: grid;
 	margin-top: 2em;
-	height: 17em;
+	height: 22em;
 	justify-content: center;
 	align-content: center;
 	grid-template-columns: repeat(4, 1fr);
@@ -42,18 +52,41 @@ body {
 }
 
 .btn {
+	cursor: pointer;
+	font-size: 18px;
 	padding: 10px;
-	border: solid 1px #d5c4a1;
-	border-radius: 10px;
-	background-color: #504945;
-	color: #d5c4a1;
+	border: none;
+	background-color: #465672;
+	color: #f8e5ee;
+	transition: transform 0.2s;
+}
+
+.operatorBtn {
+	background-color: #272f3f;
+}
+
+.copyright {
+	color: #f8e5ee;
+	padding-top: 1.5em;
+	text-align: center;
+}
+
+button:hover {
+	border: solid 2px #a9757f !important;
+}
+
+button:active {
+	transform: translateY(0.15em);
 }
 
 button:disabled {
-	border: solid 2px red !important;
+	cursor: default;
+	border: solid 2px #7d4e57 !important;
 }
+
 #ac {
 	grid-area: ac;
+	background-color: #975e69;
 }
 #divide {
 	grid-area: divide;
@@ -63,6 +96,7 @@ button:disabled {
 }
 #erase {
 	grid-area: erase;
+	background-color: #272f3f;
 }
 #num7 {
 	grid-area: n7;
@@ -75,6 +109,7 @@ button:disabled {
 }
 #equal {
 	grid-area: equal;
+	background-color: #272f3f;
 }
 #num4 {
 	grid-area: n4;
