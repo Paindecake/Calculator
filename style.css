@@ -48,6 +48,10 @@ body {
 	background-color: #504945;
 	color: #d5c4a1;
 }
+
+button:disabled {
+	border: solid 2px red !important;
+}
 #ac {
 	grid-area: ac;
 }

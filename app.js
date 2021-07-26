@@ -24,6 +24,10 @@ const dotBtn = document.getElementById("dot");
 
 let displayValue = 0;
 
+// dotBtn.onclick = () => {
+// 	dotBtn.setAttribute("disabled", "")
+// };
+
 function screenUpdate() {
 	screen.innerText += displayValue;
 }
@@ -32,8 +36,17 @@ function displayNum() {
 	numberBtn.forEach(
 		(e) =>
 			(e.onclick = () => {
+				if (equalOn) {
+					clearAll();
+					equalOn = false;
+				}
 				displayValue = e.innerText;
+				if (displayValue.includes(".")) {
+					dotBtn.setAttribute("disabled", "");
+				}
 				screenUpdate();
+				operatorBtnState("enable");
+				equalBtnState("enable");
 			})
 	);
 }
@@ -45,34 +58,20 @@ let selectedOperator = null;
 let a = "";
 let b = "";
 let resultHistory;
-
-operatorBtn.forEach((btn) => {
-	btn.onclick = () => {
-		if (a === "") {
-			a = screen.innerText;
-			selectedOperator = btn.innerText;
-		} else if (a !== "" && selectedOperator !== null) {
-			b = screen.innerText;
-			if (b === "") {
-				screenResult.textContent = resultHistory;
-				selectedOperator = btn.innerText;
-			} else {
-				screenResult.textContent = showCalc(selectedOperator);
-				a = operate(selectedOperator, +a, +b);
-				selectedOperator = btn.innerText;
-			}
-		}
-		screen.innerText = "";
-	};
-});
+let equalOn = false;
 
 equalBtn.onclick = () => {
-	b = parseInt(screen.innerText);
+	equalOn = true;
+	b = screen.innerText;
 	screenResult.textContent = showCalc(selectedOperator);
 	resultHistory = showCalc(selectedOperator);
-	a = operate(selectedOperator, +a, +b);
-	b = "";
+	a = operate(selectedOperator, a, b);
+	// b = "";
 	screen.innerText = null;
+	dotBtn.removeAttribute("disabled");
+	// selectedOperator = null;
+	operatorBtnState("enable");
+	equalBtnState("enable");
 };
 
 function add(a, b) {
@@ -91,45 +90,105 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-	sum = a / b;
+	if (b === 0) {
+		sum = "NO";
+	} else {
+		sum = a / b;
+	}
 	return sum;
 }
 
 function operate(operator, a, b) {
 	switch (operator) {
 		case "+":
-			return add(a, b);
+			return add(+a, +b);
 			break;
 		case "-":
-			return subtract(a, b);
+			return subtract(+a, +b);
 			break;
 		case "*":
-			return multiply(a, b);
+			return multiply(+a, +b);
 			break;
 		case "/":
-			return divide(a, b);
+			return divide(+a, +b);
 			break;
 	}
+	equalOn = false;
+	selectedOperator = null;
+	// a = "";
+	// b = "";
 }
 
 function showCalc(operator) {
 	switch (operator) {
 		case "+":
-			return (result = `${a}+${b}=${operate(operator, +a, +b)}`);
+			return (result = `${a}+${b}=${operate(operator, a, b)}`);
 			break;
 		case "-":
-			return (result = `${a}-${b}=${operate(operator, +a, +b)}`);
+			return (result = `${a}-${b}=${operate(operator, a, b)}`);
 			break;
 		case "*":
-			return (result = `${a}*${b}=${operate(operator, +a, +b)}`);
+			return (result = `${a}*${b}=${operate(operator, a, b)}`);
 			break;
 		case "/":
-			return (result = `${a}/${b}=${operate(operator, +a, +b)}`);
+			return (result = `${a}/${b}=${operate(operator, a, b)}`);
 			break;
 	}
 }
 
-acBtn.onclick = function() {
+function opBtn() {
+	operatorBtn.forEach((btn) => {
+		btn.onclick = () => {
+			if (a === "") {
+				a = screen.innerText;
+				selectedOperator = btn.innerText;
+			} else if (a !== "" && selectedOperator !== null) {
+				b = screen.innerText;
+				if (b === "") {
+					selectedOperator = btn.innerText;
+				} else {
+					screenResult.textContent = showCalc(selectedOperator);
+					a = operate(selectedOperator, a, b);
+					selectedOperator = btn.innerText;
+				}
+			}
+			equalOn = false;
+			screen.innerText = "";
+			dotBtn.removeAttribute("disabled");
+			equalBtnState("disabled");
+			operatorBtnState("disable");
+		};
+	});
+}
+
+let erase = function() {
+	screen.innerText = screen.innerText.slice(0, -1);
+	if (!screen.innerText.includes(".")) {
+		dotBtn.removeAttribute("disabled");
+	}
+};
+
+eraseBtn.addEventListener("click", erase);
+
+let operatorBtnState = function(state) {
+	operatorBtn.forEach((btn) => {
+		if (state === "disable") {
+			btn.setAttribute("disabled", "");
+		} else if (state === "enable") {
+			btn.removeAttribute("disabled");
+		}
+	});
+};
+
+let equalBtnState = function(state) {
+	if (state === "disable") {
+		equalBtn.setAttribute("disabled", "");
+	} else if (state === "enable") {
+		equalBtn.removeAttribute("disabled");
+	}
+};
+let clearAll = function() {
+	equalOn = false;
 	sum = 0;
 	result = null;
 	selectedOperator = null;
@@ -138,4 +197,11 @@ acBtn.onclick = function() {
 	resultHistory = "";
 	a = "";
 	b = "";
+	operatorBtnState("enable");
+	equalBtnState("enable");
+	dotBtn.removeAttribute("disabled");
 };
+
+acBtn.onclick = clearAll;
+
+opBtn();
