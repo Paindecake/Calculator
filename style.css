@@ -2,8 +2,6 @@ body {
 	font-family: "Nunito Sans";
 	background-color: #212d40;
 	color: #f8e5ee;
-	/* be95c4 */
-	/* E18AD4 */
 }
 
 h1 {
@@ -86,7 +84,6 @@ button:active {
 button:disabled {
 	cursor: default;
 	background-color: #7d4e57;
-	/* border: solid 2px #7d4e57 !important; */
 }
 
 #ac {
