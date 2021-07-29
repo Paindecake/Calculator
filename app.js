@@ -206,3 +206,26 @@ let clearAll = function() {
 acBtn.onclick = clearAll;
 
 opBtn();
+
+document.addEventListener("keydown", (event) => {
+	if(event.key == "Escape"){
+		acBtn.click()
+	} else if(event.key == "Backspace" || event.key == "Delete"){
+		eraseBtn.click()
+	}else if(event.key == "Enter" || event.key == "="){
+		event.preventDefault()
+		equalBtn.click()
+	}else if(event.key == "."){
+		dotBtn.click()
+	}else if(event.key == "+"){
+		addBtn.click()
+	}else if(event.key == "-"){
+		subtractBtn.click()
+	}else if(event.key == "*"){
+		multiplyBtn.click()
+	}else if(event.key == "/"){
+		divideBtn.click()
+	}else if(!isNaN(event.key)){
+		document.getElementById(`num${event.key}`).click()
+	}
+})
