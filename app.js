@@ -1,4 +1,4 @@
-const container = document.getElementById("container");
+
 const screen = document.getElementById("screen");
 const screenResult = document.getElementById("screenResult");
 const operatorBtn = document.querySelectorAll(".operatorBtn");
@@ -66,10 +66,8 @@ equalBtn.onclick = () => {
 	screenResult.textContent = showCalc(selectedOperator);
 	resultHistory = showCalc(selectedOperator);
 	a = operate(selectedOperator, a, b);
-	// b = "";
 	screen.innerText = null;
 	dotBtn.removeAttribute("disabled");
-	// selectedOperator = null;
 	operatorBtnState("enable");
 	equalBtnState("enable");
 };
@@ -116,8 +114,6 @@ function operate(operator, a, b) {
 	}
 	equalOn = false;
 	selectedOperator = null;
-	// a = "";
-	// b = "";
 }
 
 function showCalc(operator) {
