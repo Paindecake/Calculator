@@ -7,12 +7,13 @@ body {
 }
 
 h1 {
-	background: linear-gradient(to right, #a9757f, #f8e5ee);
+	background: linear-gradient(to bottom right, #a9757f, #f8e5ee);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	text-align: center;
 	font-size: 38px;
-	margin: 70px 0;
+	margin: 70px 0 60px 0;
+	text-shadow: 0 0 3px #f8e5ee, 0 0 5px #a9757f;
 }
 
 #calculator {
@@ -66,9 +67,12 @@ h1 {
 }
 
 .copyright {
-	color: #f8e5ee;
+	background: linear-gradient(to bottom right, #a9757f, #f8e5ee);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 	padding-top: 1.5em;
 	text-align: center;
+	text-shadow: 0 0 3px #f8e5ee, 0 0 5px #a9757f;
 }
 
 button:hover {
@@ -81,7 +85,8 @@ button:active {
 
 button:disabled {
 	cursor: default;
-	border: solid 2px #7d4e57 !important;
+	background-color: #7d4e57;
+	/* border: solid 2px #7d4e57 !important; */
 }
 
 #ac {
@@ -109,7 +114,7 @@ button:disabled {
 }
 #equal {
 	grid-area: equal;
-	background-color: #272f3f;
+	background-color: #749b66;
 }
 #num4 {
 	grid-area: n4;

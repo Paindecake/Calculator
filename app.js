@@ -123,16 +123,16 @@ function operate(operator, a, b) {
 function showCalc(operator) {
 	switch (operator) {
 		case "+":
-			return (result = `${a}+${b}=${operate(operator, a, b)}`);
+			return (result = `${a} + ${b} = ${operate(operator, a, b)}`);
 			break;
 		case "-":
-			return (result = `${a}-${b}=${operate(operator, a, b)}`);
+			return (result = `${a} - ${b} = ${operate(operator, a, b)}`);
 			break;
 		case "*":
-			return (result = `${a}*${b}=${operate(operator, a, b)}`);
+			return (result = `${a} * ${b} = ${operate(operator, a, b)}`);
 			break;
 		case "/":
-			return (result = `${a}/${b}=${operate(operator, a, b)}`);
+			return (result = `${a} / ${b} = ${operate(operator, a, b)}`);
 			break;
 	}
 }
